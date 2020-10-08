@@ -1,0 +1,8 @@
+.formContainer {
+  margin: 3rem;
+  width: 30%; 
+}
+
+.formAlignment {
+  display: flex;
+}
