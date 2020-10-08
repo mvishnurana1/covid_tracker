@@ -1,5 +1,6 @@
-import React, { Component } from 'react'; 
 import axios from 'axios'; 
+import React, { Component } from 'react'; 
+import CountryData from '../component/View/CountryData'; 
 
 class CovidApi extends Component {
   constructor() {
@@ -10,45 +11,27 @@ class CovidApi extends Component {
   }
 
   async componentDidMount() {
-    const res = await axios.get(`https://api.covid19api.com/dayone/country/india/status/confirmed/live`)
+    const res = await axios.get(`https://api.covid19api.com/dayone/country/south-korea/status/confirmed/live`)
 
     console.log(res.data); 
     this.setState({ data: res.data }); 
   }
 
-  getLatestData() {
+  getLatesCountrytData() {
     const { data } = this.state; 
 
     if (!data) {
       return; 
     }
-    
-    console.log(data[data.length - 1]); 
-    return data[data.length - 1]; 
-  }
 
-  renderLatestData() {
-    const latestData = this.getLatestData(); 
-    if (!latestData) {
-      return; 
-    }
+    const final = data[data.length - 1]; 
 
-    // console.log(latestData);
-
-    // Object.keys(latestData).map((keyName, index, value) => (
-    //   console.log(index, keyName, value)
-    // ))
-
-    // atestData.map((value) => console.log(value))
-
-    // return latestData.map((data) => <div>
-    //   {data}
-    // </div>)
+    return <CountryData countryInfo={final} />
   }
 
   render() {
     return (<div>
-      {this.renderLatestData()}
+      {this.getLatesCountrytData()}
     </div>)
   }
 }
