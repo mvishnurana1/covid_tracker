@@ -22,12 +22,14 @@ class Forms extends Component {
     event.preventDefault(); 
   }
 
-  renderCountryData() {
+  returnCountryInformation() {
     const { country } = this.state;
-    
-    if (country !== null) {
-      return <CountryData country={country} />
+
+    if (!country) {
+      return; 
     }
+    
+     return <CovidApi country={country} />
   }
 
   render() {
@@ -52,7 +54,7 @@ class Forms extends Component {
       </Form.Group>
     </Form>
 
-    {this.renderCountryData()}
+    {this.returnCountryInformation()}
     <CovidApi />
     </>
   )}
