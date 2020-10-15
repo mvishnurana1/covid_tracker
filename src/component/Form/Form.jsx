@@ -17,9 +17,9 @@ class Forms extends Component {
   }
 
   handleSubmit(event) {
-    console.log(this.state.country); 
-    this.setState({ country: '' }); 
     event.preventDefault(); 
+    console.log(this.state.country); 
+    return <CovidApi country={this.state.country} />
   }
 
   returnCountryInformation() {

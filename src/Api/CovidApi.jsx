@@ -11,10 +11,24 @@ class CovidApi extends Component {
   }
 
   async componentDidMount() {
-    const res = await axios.get(`https://api.covid19api.com/dayone/country/south-korea/status/confirmed/live`)
+    const { country } = this.props; 
 
-    console.log(res.data); 
-    this.setState({ data: res.data }); 
+    console.log('in get Data...'); 
+
+    if (!country) {
+      console.log('no country data... yet'); 
+      return; 
+    }
+
+    // https://api.covid19api.com/dayone/country/india/status/confirmed/live
+
+    try {
+      const res = await axios.get(`https://api.covid19api.com/dayone/country/${country}/status/confirmed/live`); 
+      console.log(res.data); 
+      this.setState({ data: res.data }); 
+    } catch(e) {
+      console.warn(e); 
+    }
   }
 
   getLatesCountrytData() {
@@ -30,8 +44,8 @@ class CovidApi extends Component {
   }
 
   render() {
-    return (<div>
-      {this.getLatesCountrytData()}
+
+  return (<div>
     </div>)
   }
 }
