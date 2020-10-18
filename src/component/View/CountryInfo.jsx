@@ -1,9 +1,10 @@
-import CovidLogo from '../../assets/virus.svg'; 
 import moment from 'moment'; 
 import React from 'react'; 
 import Spinner from 'react-bootstrap/Spinner'; 
 
-import './CountryData.css'; 
+import './CountryInfo.css'; 
+
+import CovidLogo from '../../assets/virus.svg'; 
 
 const CountryData = ({ countryInfo }) => {
   if (!countryInfo) {

@@ -1,6 +1,5 @@
 import axios from 'axios'; 
 import React, { Component } from 'react'; 
-import CountryData from '../component/View/CountryData'; 
 
 class CovidApi extends Component {
   constructor() {
@@ -19,8 +18,6 @@ class CovidApi extends Component {
       console.log('no country data... yet'); 
       return; 
     }
-
-    // https://api.covid19api.com/dayone/country/india/status/confirmed/live
 
     try {
       const res = await axios.get(`https://api.covid19api.com/dayone/country/${country}/status/confirmed/live`); 
