@@ -1,14 +1,18 @@
+import axios from 'axios'; 
 import React, { Component } from 'react'; 
-import './Form.css';
 import {Button, Form} from 'react-bootstrap'; 
-import CountryData from '../View/CountryData'; 
-import CovidApi from '../../Api/CovidApi';
+
+import './Form.css';
+
+import CountryInfo from '../View/CountryInfo'; 
 
 class Forms extends Component {
   constructor(props) {
     super(props); 
     this.state = {
-      country: null
+      country: null, 
+      data: null,
+      latestData: null, 
     }; 
   }
 
@@ -16,10 +20,40 @@ class Forms extends Component {
     this.setState({ country: event.target.value }); 
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault(); 
-    console.log(this.state.country); 
-    return <CovidApi country={this.state.country} />
+
+    const { country } = this.state; 
+
+    try {
+      const res = await axios.get(`https://api.covid19api.com/dayone/country/${country}/status/confirmed/live`); 
+      console.log(res.data); 
+      this.setState({ data: res.data }); 
+    } catch(e) {
+      console.error(e); 
+    }
+  }
+
+  // get the data object and see the values in it 
+  getLatestData(){
+    const { data } = this.state;
+    
+    if(!data) {
+      return; 
+    }
+
+    const latestData = data.length - 1; 
+    this.setState({ latestData: data[latestData] }); 
+  }
+
+  renderCountryInformation() {
+    const { latestData } = this.state; 
+
+    if (!latestData) {
+      return; 
+    }
+
+    return <CountryInfo data={latestData} />
   }
 
   returnCountryInformation() {
@@ -28,8 +62,6 @@ class Forms extends Component {
     if (!country) {
       return; 
     }
-    
-     return <CovidApi country={country} />
   }
 
   render() {
@@ -41,9 +73,9 @@ class Forms extends Component {
           size="lg" 
           style={{ marginRight: '2rem' }}
           placeholder="Enter Country"
-          type="string"
           onChange={(e) => this.handleChange(e)}
           country={this.state.country}
+          value={this.state.country}
         />
         <Button 
           variant="primary"  
@@ -55,7 +87,8 @@ class Forms extends Component {
     </Form>
 
     {this.returnCountryInformation()}
-    <CovidApi />
+    {this.getLatestData()}
+    {this.renderCountryInformation()}
     </>
   )}
 }

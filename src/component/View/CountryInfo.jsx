@@ -1,6 +1,5 @@
 import moment from 'moment'; 
 import React from 'react'; 
-import Spinner from 'react-bootstrap/Spinner'; 
 
 import './CountryInfo.css'; 
 
@@ -8,10 +7,9 @@ import CovidLogo from '../../assets/virus.svg';
 
 const CountryData = ({ countryInfo }) => {
   if (!countryInfo) {
-    console.log('no data, returning ');
     return <div>
-      <Spinner />
-    </div> 
+      No Data available...
+    </div>  
   }
 
   return <div style={{ backgroundColor: 'pink'}}>
