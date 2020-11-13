@@ -12,20 +12,22 @@ const CountryInfo = ({ data }) => {
     return; 
   }
 
+  const latestUpdate = data[data.length - 1]; 
+
   return <Card style={{ backgroundColor: 'pink', width: '500px'}}>
     <img alt="" className='imageStyle' src={CovidLogo} />
     <div>
-      {data[data.length - 1].Country}
+      {latestUpdate.Country}
       <Image 
-        src={`https://www.countryflags.io/${data[data.length - 1].CountryCode}/shiny/64.png`}
+        src={`https://www.countryflags.io/${latestUpdate.CountryCode}/shiny/64.png`}
         fluid
       />
     </div>
     <div>
-      {(data[data.length - 1].Cases).toLocaleString()}
+      {(latestUpdate.Cases).toLocaleString()}
     </div>
     <div>
-      {moment(data[data.length - 1].Date).format('LLLL')}
+      {moment(latestUpdate.Date).format('LLLL')}
     </div>
   </Card>
 }
