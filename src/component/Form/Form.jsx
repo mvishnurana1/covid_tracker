@@ -12,7 +12,6 @@ class Forms extends Component {
     this.state = {
       country: null, 
       data: null,
-      latestData: null, 
     }; 
   }
 
@@ -27,46 +26,25 @@ class Forms extends Component {
 
     try {
       const res = await axios.get(`https://api.covid19api.com/dayone/country/${country}/status/confirmed/live`); 
-      console.log(res.data); 
       this.setState({ data: res.data }); 
     } catch(e) {
       console.error(e); 
     }
   }
 
-  // get the data object and see the values in it 
-  getLatestData(){
-    const { data } = this.state;
-    
-    if(!data) {
-      return; 
-    }
-
-    const latestData = data.length - 1; 
-    this.setState({ latestData: data[latestData] }); 
-  }
-
   renderCountryInformation() {
-    const { latestData } = this.state; 
+    const { data } = this.state; 
 
-    if (!latestData) {
+    if (!data) {
       return; 
     }
 
-    return <CountryInfo data={latestData} />
-  }
-
-  returnCountryInformation() {
-    const { country } = this.state;
-
-    if (!country) {
-      return; 
-    }
+    return <CountryInfo data={data} />
   }
 
   render() {
     return (
-    <>
+    <div className="page">
     <Form className="formContainer" onSubmit={(e) => this.handleSubmit(e)}> 
       <Form.Group className='formAlignment'> 
         <Form.Control 
@@ -85,11 +63,8 @@ class Forms extends Component {
         </Button>
       </Form.Group>
     </Form>
-
-    {this.returnCountryInformation()}
-    {this.getLatestData()}
     {this.renderCountryInformation()}
-    </>
+    </div>
   )}
 }
 
