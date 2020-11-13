@@ -6,3 +6,7 @@
 .formAlignment {
   display: flex;
 }
+
+.page {
+  margin: 3rem; 
+}
