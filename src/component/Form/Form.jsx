@@ -16,7 +16,10 @@ class Forms extends Component {
   }
 
   handleChange(event) {
-    this.setState({ country: event.target.value }); 
+    let country = event.target.value; 
+    country = country.replace(' ', '-'); 
+    country = country.trim();
+    this.setState({ country: country }); 
   }
 
   async handleSubmit(event) {
