@@ -12,14 +12,14 @@ const CountryInfo = ({ data }) => {
 
   const latestUpdate = data[data.length - 1]; 
 
-  return <Card style={{ backgroundColor: 'pink', width: '20rem'}}>
+  return <Card className="card">
     <ListGroup variant="flush">
     <ListGroup.Item>
-      <div style={{ alignItems: 'center', display: 'flex', justifyContent: 'space-evenly' }}>
-        <div style={{ fontWeight: '600', textAlign: 'right', width: '8rem'}}>
+      <div className="listGroupItem">
+        <div className="listGroupLabel">
           Country: 
         </div>
-        <div style={{ alignItems: 'center', display: 'flex', marginLeft: '1rem', width: '9rem' }}>
+        <div className="countryInfoContainer">
           {latestUpdate.Country}
           <Image 
             src={`https://www.countryflags.io/${latestUpdate.CountryCode}/shiny/64.png`}
@@ -29,21 +29,21 @@ const CountryInfo = ({ data }) => {
       </div>
     </ListGroup.Item>
     <ListGroup.Item>
-      <div style={{ alignItems: 'center', display: 'flex', height: '64px', justifyContent: 'space-evenly' }}>
-        <div style={{ fontWeight: '600', textAlign: 'right', width: '8rem'}}>
+      <div className="listGroupInfo">
+        <div className="listGroupLabel">
         Cases to Date: 
         </div>
-        <div style={{ alignItems: 'center', display: 'flex', marginLeft: '1rem', width: '9rem' }}>
+        <div className="countryInfoContainer">
           {(latestUpdate.Cases).toLocaleString()}
         </div>
       </div>
     </ListGroup.Item>
     <ListGroup.Item>
-    <div style={{ alignItems: 'center', display: 'flex', height: '64px',  justifyContent: 'space-evenly' }}>
-        <div style={{ fontWeight: '600', textAlign: 'right', width: '8rem'}}>
+    <div className="listGroupInfo">
+        <div className="ListGroupLabel">
           Updated On: 
         </div>
-        <div style={{ alignItems: 'center', display: 'flex', marginLeft: '1rem', width: '9rem' }}>
+        <div className="countryInfoContainer">
           {moment(latestUpdate.Date).format('LL')}
         </div>
       </div>
