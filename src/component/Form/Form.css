@@ -1,12 +1,26 @@
 .formContainer {
+  display: flex;
   margin: 3rem;
   width: 30%; 
 }
 
 .formAlignment {
   display: flex;
+  justify-content: space-between;
+}
+
+.submit {
+  background-color: #f65858;
+  outline: #f65858;
+}
+
+.submit:hover {
+  background-color: #f65858;
+  text-decoration: none;
+  outline: none;
 }
 
 .page {
-  margin: 3rem; 
+  padding: 2rem; 
+  background-color: #fff;
 }
