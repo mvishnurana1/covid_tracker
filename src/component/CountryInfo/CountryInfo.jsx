@@ -31,7 +31,7 @@ const CountryInfo = ({ data }) => {
     <ListGroup.Item>
       <div className="listGroupInfo">
         <div className="listGroupLabel">
-        Cases to Date: 
+          Cases to Date: 
         </div>
         <div className="countryInfoContainer">
           {(latestUpdate.Cases).toLocaleString()}
@@ -40,7 +40,7 @@ const CountryInfo = ({ data }) => {
     </ListGroup.Item>
     <ListGroup.Item>
     <div className="listGroupInfo">
-        <div className="ListGroupLabel">
+        <div className="listGroupLabel">
           Updated On: 
         </div>
         <div className="countryInfoContainer">

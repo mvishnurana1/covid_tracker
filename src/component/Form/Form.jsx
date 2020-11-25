@@ -1,6 +1,6 @@
 import axios from 'axios'; 
 import React, { Component } from 'react'; 
-import {Button, Form} from 'react-bootstrap'; 
+import { Button, Form } from 'react-bootstrap'; 
 
 import './Form.css';
 
@@ -39,24 +39,18 @@ class Forms extends Component {
   }
 
   renderCountryInformation() {
-    const { data } = this.state; 
+    const { country, data, error } = this.state; 
 
     if (!data) {
       return; 
     }
 
-    return <CountryInfo data={data} />
-  }
-
-  renderCovidApiErrorPage() {
-    const { country, error } = this.state; 
-
     if (!error) {
-      return; 
+      return <CountryInfo data={data} /> 
+    } else {
+      return <ErrorPage country={country} error={error} />
     }
-
-    return <ErrorPage country={country} error={error} />
-  }
+  }  
 
   render() {
     return (
@@ -70,7 +64,7 @@ class Forms extends Component {
             country={this.state.country}
             value={this.state.country}
           />
-          <Button 
+          <Button     
             className="submit"
             value="country"
             type="submit">
@@ -79,7 +73,6 @@ class Forms extends Component {
         </Form.Group>
       </Form>
       {this.renderCountryInformation()}
-      {this.renderCovidApiErrorPage()}
     </div>
   )}
 }
